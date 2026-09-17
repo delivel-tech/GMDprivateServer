@@ -12,10 +12,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends git ca-certific
 # Set the working directory
 WORKDIR /var/www/html
 
-# Clone the repository
-ARG BRANCH=master
-RUN git clone --branch ${BRANCH} https://github.com/MegaSa1nt/GMDprivateServer.git . && \
-    chown -R www-data:www-data /var/www/html
+COPY . /var/www/html
+
+RUN chown -R www-data:www-data /var/www/html
 
 # Export Apache's port
 EXPOSE 80
